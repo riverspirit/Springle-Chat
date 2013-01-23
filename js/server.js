@@ -9,23 +9,31 @@ var server = http.createServer(function(request, response) {
 
 var clients = [];
 
+var allowed_origins = [
+    'localhost',
+    'rebugged.com'
+];
+
+var connection_id = 0;
+
 server.listen(8080, function() {
     console.log((new Date()) + ' Server is listening on port 8080');
 });
 
 wsServer = new WebSocketServer({
     httpServer: server,
-    // You should not use autoAcceptConnections for production
-    // applications, as it defeats all standard cross-origin protection
-    // facilities built into the protocol and the browser.  You should
-    // *always* verify the connection's origin and decide whether or not
-    // to accept it.
     autoAcceptConnections: false
 });
 
 function originIsAllowed(origin) {
-  // put logic here to detect whether the specified origin is allowed.
-  return true;
+    var origin_trimmed = origin.replace('http://', '')
+                               .replace('https://', '');
+                       
+    if (allowed_origins.indexOf(origin_trimmed) > -1) {
+        return true;
+    }
+
+    return false;
 }
 
 wsServer.on('request', function(request) {
@@ -37,10 +45,10 @@ wsServer.on('request', function(request) {
     }
 
     var connection = request.accept('chat', request.origin);
+    connection.id = connection_id++;
 
     clients.push(connection);
-    console.log('-------- ' + clients.length)
-    //console.log((new Date()) + ' Connection accepted.');
+    
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
             console.log(message.utf8Data)
@@ -54,17 +62,19 @@ wsServer.on('request', function(request) {
                 broadcast_message(message.utf8Data);
             }
         } else if (message.type === 'binary') {
+            // At the moment, we are handling only text messages - no binary
             connection.sendUTF('Invalid message');
         }
     });
     
-    setInterval(function() {
-        send_poke();
-    }, 3000);
 
     connection.on('close', function(reasonCode, description) {
-        console.log(connection.nickname)
-        console.log('-------- ' + clients.length)
+        for (var i in clients) {
+            if (connection.id === clients[i].id) {
+                clients.splice(i, 1);
+                broadcast_chatters_list();
+            }
+        }
         console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
     });
     
@@ -93,7 +103,7 @@ wsServer.on('request', function(request) {
     function send_poke() {
         var msg = JSON.stringify({
             type: 'message',
-            nickname: '#BOT#',
+            nickname: 'Bot',
             message: 'This is an automated message from the server.'
         });
         

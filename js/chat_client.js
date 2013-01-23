@@ -1,9 +1,15 @@
 $(document).ready(function () {
     var socket;
-    var server_url = 'ws://localhost:8080/'
+    var server_url = 'ws://localhost:8080/';
     var protocol_identifier = 'chat';
     var nickname = 'Guest-' + Math.floor(Math.random()*100);
-    
+
+    if (!is_websocket_supported()) {
+        $('#chat-nickname-form').html('Your browser <strong>doesnt</strong> support '
+                                 + 'websockets :( <br/>Please use an updated version '
+                                 + 'of a modern browser, such as <a href="http://www.firefox.com/">Firefox</a> '
+                                 + 'or <a href="http://www.google.com/chrome">Google Chrome</a>');
+    }
     $('#nickname-submit').click(function () {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
         openConnection();
@@ -79,5 +85,12 @@ $(document).ready(function () {
         };
         
         socket.send(JSON.stringify(message_to_send));
+    }
+
+    function is_websocket_supported() {
+        if ('WebSocket' in window) {
+            return true;
+        }
+        return false;
     }
 });
