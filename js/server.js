@@ -2,7 +2,6 @@ var WebSocketServer = require('websocket').server;
 var http = require('http');
 
 var server = http.createServer(function(request, response) {
-    console.log((new Date()) + ' Received request for ' + request.url);
     response.writeHead(404);
     response.end();
 });
@@ -13,6 +12,8 @@ var allowed_origins = [
     'localhost',
     'rebugged.com'
 ];
+
+var allowed_protocol = 'chat';
 
 var connection_id = 0;
 
@@ -40,8 +41,12 @@ wsServer.on('request', function(request) {
     if (!originIsAllowed(request.origin)) {
       // Make sure we only accept requests from an allowed origin
       request.reject();
-      console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
       return;
+    }
+
+    if (request.requestedProtocols.indexOf(allowed_protocol) === -1) {
+        request.reject();
+        return false;
     }
 
     var connection = request.accept('chat', request.origin);
@@ -64,7 +69,6 @@ wsServer.on('request', function(request) {
 
                 broadcast_chatters_list();
             } else if (msgObj.type === 'message') {
-                console.log('Received Message: ' + message.utf8Data);
                 message_to_send = JSON.parse(message.utf8Data);
                 message_to_send.sender = connection.id;
                 message_to_send = JSON.stringify(message_to_send);
@@ -106,7 +110,6 @@ wsServer.on('request', function(request) {
             type: 'nicklist',
             nicklist: nicklist
         });
-        console.log(msg_to_send);
         broadcast_message(msg_to_send);
     }
     
