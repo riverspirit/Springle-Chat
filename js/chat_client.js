@@ -10,14 +10,15 @@ $(document).ready(function () {
                                  + 'of a modern browser, such as <a href="http://www.firefox.com/">Firefox</a> '
                                  + 'or <a href="http://www.google.com/chrome">Google Chrome</a>');
     }
-    $('#nickname-submit').click(function () {
-        nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
 
-        $('#chat-nickname-form').fadeOut(function () {
-            $('#loading-message').fadeIn();
-        });
-        show_timer();
-        openConnection();
+    $('#nickname-submit').click(function () {
+        handshake_with_server();
+    });
+
+    $('#nickname').keypress(function (e) {
+        if (e.which === 13) {
+            handshake_with_server();
+        }
     });
     
     
@@ -26,11 +27,21 @@ $(document).ready(function () {
     });
 
     $('#msg-box').keypress(function (e) {
-        if (e.which === 13 && e.charCode === 0 && !e.shiftKey) {
+        if (e.which === 13 && !e.shiftKey) {
             send_msg_box_content();
             e.preventDefault();
         }
     });
+
+    function handshake_with_server() {
+        nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
+
+        $('#chat-nickname-form').fadeOut(function () {
+            $('#loading-message').fadeIn();
+        });
+        show_timer();
+        openConnection();
+    }
     
     function openConnection() {
         socket = new WebSocket(server_url, protocol_identifier);
