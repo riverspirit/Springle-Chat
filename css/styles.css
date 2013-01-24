@@ -177,3 +177,11 @@
     list-style-type: none;
     padding-left: 5px;
 }
+
+.loading-msg {
+    text-align: center;
+}
+
+.loading-timer {
+    
+}

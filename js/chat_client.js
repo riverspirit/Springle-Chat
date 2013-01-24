@@ -1,8 +1,8 @@
 $(document).ready(function () {
     var socket;
-    var server_url = 'ws://localhost:8080/';
+    var server_url = 'ws://sky.rebugged.com:8080/';
     var protocol_identifier = 'chat';
-    var nickname = 'Guest-' + Math.floor(Math.random()*100);
+    var nickname = 'Guest-' + Math.floor(Math.random() * 100);
 
     if (!is_websocket_supported()) {
         $('#chat-nickname-form').html('Your browser <strong>doesnt</strong> support '
@@ -12,9 +12,12 @@ $(document).ready(function () {
     }
     $('#nickname-submit').click(function () {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
+
+        $('#chat-nickname-form').fadeOut(function () {
+            $('#loading-message').fadeIn();
+        });
+        show_timer();
         openConnection();
-        $('#chat-nickname-form').slideUp();
-        $('#chat-container').fadeIn();
     });
     
     
@@ -34,6 +37,10 @@ $(document).ready(function () {
         introduce(nickname);
         socket.addEventListener('message', function (event) {
             message_received(event.data)
+        });
+
+        $('#loading-message').fadeOut(function () {
+           $('#chat-container').fadeIn();
         });
     }
     
@@ -92,5 +99,19 @@ $(document).ready(function () {
             return true;
         }
         return false;
+    }
+
+    function show_timer() {
+        var time_start = 5;
+        var time_string;
+        var tick = window.setInterval(function () {
+            if (time_start-- > 0) {
+                time_string = time_start + ' seconds';
+            } else {
+                time_string = '..ahem ahem, a little more..';
+            }
+            
+            $('#loading-timer').html(time_string);
+        }, 1000);
     }
 });

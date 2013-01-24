@@ -5,12 +5,18 @@
     </head>
     <body>
         <header class="header">
-            <span>Code is on <a href="https://github.com/cix/Websocket-Chat">Github</a></span>
+            <span>Code is on <a href="https://github.com/riverspirit/Websocket-Chat">Github</a></span>
             <h1>Socket Chat</h1>
         </header>
         
         <div id="chat-nickname-form" class="chat-nickname-form">
             Enter nickname: <input type="text" id="nickname" /><button id="nickname-submit" class="button">Start Chatting</button>
+        </div>
+
+        <div id="loading-message" class="loading-msg hide">
+            <img src="images/cloud.gif" alt="loading.." />
+            <br />
+            <p>Please wait <span id="loading-timer">5 seconds</span> while we connect you to the server.</p>
         </div>
 
         <div id="chat-container" class="chat-container hide">
