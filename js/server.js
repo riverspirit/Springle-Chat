@@ -56,10 +56,20 @@ wsServer.on('request', function(request) {
             
             if (msgObj.type === 'intro') {
                 connection.nickname = msgObj.nickname;
+
+                connection.sendUTF(JSON.stringify({
+                    type: 'welcome',
+                    userId:connection.id
+                }));
+
                 broadcast_chatters_list();
             } else if (msgObj.type === 'message') {
                 console.log('Received Message: ' + message.utf8Data);
-                broadcast_message(message.utf8Data);
+                message_to_send = JSON.parse(message.utf8Data);
+                message_to_send.sender = connection.id;
+                message_to_send = JSON.stringify(message_to_send);
+
+                broadcast_message(message_to_send);
             }
         } else if (message.type === 'binary') {
             // At the moment, we are handling only text messages - no binary

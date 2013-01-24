@@ -3,6 +3,7 @@ $(document).ready(function () {
     var server_url = 'ws://sky.rebugged.com:8080/';
     var protocol_identifier = 'chat';
     var nickname = 'Guest-' + Math.floor(Math.random() * 100);
+    var myId;
 
     if (!is_websocket_supported()) {
         $('#chat-nickname-form').html('Your browser <strong>doesnt</strong> support '
@@ -36,27 +37,25 @@ $(document).ready(function () {
     function handshake_with_server() {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
 
-        $('#chat-nickname-form').fadeOut(function () {
-            $('#loading-message').fadeIn();
-        });
         show_timer();
-        openConnection();
+        open_connection();
+        
+        $('#chat-nickname-form').fadeOut(function () {
+            if (myId === undefined) { // if connection not already established
+                $('#loading-message').fadeIn();
+            }
+        });
     }
     
-    function openConnection() {
+    function open_connection() {
         socket = new WebSocket(server_url, protocol_identifier);
-
         socket.addEventListener("open", connection_established);
     }
     
     function connection_established(event) {
         introduce(nickname);
         socket.addEventListener('message', function (event) {
-            message_received(event.data)
-        });
-
-        $('#loading-message').fadeOut(function () {
-           $('#chat-container').fadeIn();
+            message_received(event.data);
         });
     }
     
@@ -74,7 +73,12 @@ $(document).ready(function () {
         
         message = JSON.parse(message);
         
-        if (message.type === 'message') {
+        if (message.type === 'welcome') {
+            myId = message.userId;
+
+            $('#chat-container').fadeIn();
+            $('#loading-message').hide();
+        } else if (message.type === 'message' && message.sender !== myId) {
             var msg_string;
             
             msg_string  = '<div class="message">';
@@ -112,8 +116,11 @@ $(document).ready(function () {
             nickname: nickname,
             message: message
         };
-        
-        socket.send(JSON.stringify(message_to_send));
+
+        var msg_data_str = JSON.stringify(message_to_send);
+
+        socket.send(msg_data_str);
+        message_received(msg_data_str);
     }
 
     function is_websocket_supported() {
