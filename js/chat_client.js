@@ -22,9 +22,14 @@ $(document).ready(function () {
     
     
     $('#send-btn').click(function () {
-        var message = $('#msg-box').val();
-        send_message(message);
-        $('#msg-box').val('');
+        send_msg_box_content();
+    });
+
+    $('#msg-box').keypress(function (e) {
+        if (e.which === 13 && e.charCode === 0 && !e.shiftKey) {
+            send_msg_box_content();
+            e.preventDefault();
+        }
     });
     
     function openConnection() {
@@ -82,6 +87,12 @@ $(document).ready(function () {
             $('#people-list-data').html(chatter_list_html);
         }
         
+    }
+
+    function send_msg_box_content() {
+        var message = $('#msg-box').val();
+        send_message(message);
+        $('#msg-box').val('');
     }
     
     function send_message(message) {
