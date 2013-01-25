@@ -2,6 +2,7 @@ Websocket-Chat
 ==============
 
 Realtime chat using NodeJS and WebSocket
+Demo at http://rebugged.com/code/websocket-chat/
 
 ## Tech Stack
 * WebSocket API (for establishing and maintaining socket connection with the server)
