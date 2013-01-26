@@ -185,11 +185,20 @@ body {
 }
 
 .chatter-list ul {
-    padding-left: 10px;
+    padding-left: 0;
 }
 
 .chatter-list ul li {
+    border-bottom: 1px dashed #ECECEC;
+    height: 28px;
     list-style-type: none;
+    padding-left: 10px;
+    padding-top: 4px;
+    width: 220px;
+}
+
+.chatter-list ul li:hover {
+    background: #D9EEF4;
 }
 
 .talk-bubble-set {
