@@ -18,25 +18,6 @@ body {
     width: 920px;
 }
 
-.chat-log {
-    border: 1px solid silver;
-    border-radius: 10px 0 0 0;
-    float: left;
-    min-height: 100px;
-    max-height: 290px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 600px;
-}
-
-.people-list {
-    border: 1px solid #CCCCCC;
-    border-radius: 0 11px 0 0;
-    float: left;
-    min-height: 100px;
-    width: 200px;
-}
-
 .msg-box {
     border: 3px solid #cccccc;
     float: left;
@@ -150,44 +131,12 @@ body {
     border-bottom: 1px dotted white;
 }
 
-.chatbox-title {
-    position: fixed;
-}
-
-.chatbox-title h3 {
-    background: none repeat scroll 0 0 #CCCCCC;
-    border-radius: 10px 0 0 0;
-    display: inline-block;
-    padding-left: 5px;
-    width: 582px;
-}
-
-.people-list-title h3 {
-    background: none repeat scroll 0 0 #CCCCCC;
-    border-radius: 0 10px 0 0;
-    display: inline-block;
-    width: 100%;
-}
-
-.message {
-    border-bottom: 1px solid #E6E6E6;
-}
-
-.msg-from:after {
-    content: ':';
-}
-
 .hide {
     display: none;
 }
 
 .chat-nickname-form {
     text-align: center;
-}
-
- .people-list-data ul {
-    list-style-type: none;
-    padding-left: 5px;
 }
 
 .loading-msg {
