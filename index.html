@@ -6,10 +6,10 @@
     <body>
         <header class="header">
             <span>Code is on <a href="https://github.com/riverspirit/Websocket-Chat">Github</a></span>
-            <h1>Socket Chat</h1>
+            <h1><img src="images/chat-icon.png" /> Socket Chat</h1>
         </header>
         
-        <div id="chat-nickname-form" class="chat-nickname-form">
+        <div id="chat-nickname-form" class="chat-nickname-form hide">
             Enter nickname: <input type="text" id="nickname" /><button id="nickname-submit" class="button">Start Chatting</button>
         </div>
 
@@ -19,22 +19,130 @@
             <p>Please wait <span id="loading-timer">5 seconds</span> while we connect you to the server.</p>
         </div>
 
-        <div id="chat-container" class="chat-container hide">
-            <div class="chatbox-title">
-                <h3>Messages</h3>
-            </div>
-            <div id="chat-log" class="chat-log">
-                <div class="message">
-                    <span class="msg-from">Jack</span>
-                    <span class="msg-text">Hello world</span>
+        <div id="chat-container" class="chat-container">
+            <div id="chat-main-stage" class="chat-main-stage">
+                <div class="message-log-area">
+                    
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Jack</div>
+                        <div class="bubble">
+                            <span class="msg-text  bubble-alt">
+                                Hello world!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Saurabh</div>
+                        <div class="bubble">
+                            <span class="msg-text">
+                                Hello world!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Jack</div>
+                        <div class="bubble">
+                            <span class="msg-text bubble-alt">
+                                teger arcu leo, viverra ut elementum et, ullamcorper ut felis. Suspendisse potenti. Cras eget erat aliquet libero aliquam ultricies eu a risus. Cras auctor lacus vitae dui condimentum sed mollis purus pretium.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Jack</div>
+                        <div class="bubble">
+                            <span class="msg-text">
+                                teger arcu leo, viverra ut elementum et, ullamcorper ut felis. Suspendisse potenti. Cras eget erat aliquet libero aliquam ultricies eu a risus. Cras auctor lacus vitae dui condimentum sed mollis purus pretium.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Saurabh</div>
+                        <div class="bubble">
+                            <span class="msg-text  bubble-alt">
+                                Hello world!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Saurabh</div>
+                        <div class="bubble">
+                            <span class="msg-text">
+                                Hello world!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Saurabh</div>
+                        <div class="bubble">
+                            <span class="msg-text">
+                                Hello world!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Saurabh</div>
+                        <div class="bubble">
+                            <span class="msg-text">
+                                Hello world!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="talk-bubble-set">
+                        <div class="name">Saurabh</div>
+                        <div class="bubble">
+                            <span class="msg-text">
+                                Hello world!
+                            </span>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="chatter-list-sidebar">
+                    <div class="title">People online now</div>
+                    <div id="chatter-list" class="chatter-list">
+                        <ul>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+                            <li>Saurabh</li>
+
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div id="people-list" class="people-list">
-                <div class="people-list-title">
-                    <h3>People chatting</h3>
-                </div>
-                <div id="people-list-data" class="people-list-data"></div>
+
+            <div class="chat-bottom-area">
+                <div id="is-typig-status" class="is-typig-status">Saurabh is typing..</div>
+                <a href="javascript:;" id="clear-log-link" class="clear-log-link">Clear log</a>
             </div>
+            
             <div id="send-msg" class="send-msg">
                 <textarea id="msg-box" class="msg-box"></textarea>
                 <span id="send-btn" class="send-btn button">SEND</span>

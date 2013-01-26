@@ -1,6 +1,15 @@
+@font-face {
+	font-family: OpenSansLight;
+	src: url('../fonts/opensans/OpenSans-CondLight.ttf');
+}
+
 * {
     margin: 0px;
-    font-family: Arial, Tahoma, Ubuntu, "Sans serif";
+    font-family: OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
+}
+
+body {
+    background: #ECECEC;
 }
 
 .chat-container {
@@ -32,7 +41,8 @@
     border: 3px solid #cccccc;
     float: left;
     height: 50px;
-    width: 600px;
+    padding: 4px;
+    width: 700px;
 }
 
 .msg-box:hover {
@@ -43,7 +53,7 @@
     clear: both;
     height: 100px;
     margin-top: 15px;
-    padding-top: 10px;
+    padding-top: 0;
     width: 800px;
 }
 
@@ -184,6 +194,123 @@
     text-align: center;
 }
 
-.loading-timer {
-    
+.chat-main-stage {
+    height: 360px;
+    width: 920px;
+}
+
+.message-log-area {
+    background: url('../images/bg1.png');
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+    color: #BDBDBD;
+    float: left;
+    height: 358px;
+    overflow-y: auto;
+    width: 700px;
+}
+
+.chatter-list-sidebar {
+    border-bottom: 1px solid silver;
+    border-left: 0 none;
+    background: #FFFFFF;
+    float: left;
+    height: 359px;
+    width: 218px;
+}
+
+.chatter-list-sidebar .title {
+    background: #424242;
+    color: #F7F7F7;
+    font-weight: bold;
+    height: 30px;
+    padding-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.chatter-list {
+    height: 325px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.chatter-list ul {
+    padding-left: 10px;
+}
+
+.chatter-list ul li {
+    list-style-type: none;
+}
+
+.talk-bubble-set {
+    clear: both;
+    min-height: 30px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.talk-bubble-set .name {
+    float: left;
+    font-weight: bold;
+    margin-rigth: 10px;
+    max-width: 100px;
+    overflow: hidden;
+    text-align: right;
+    width: 70px;
+}
+
+.talk-bubble-set .bubble {
+    background: url('../images/tip.png') no-repeat;
+    float: left;
+    margin-left: 5px;
+    min-height: 40px;
+    width: 586px;
+}
+
+.talk-bubble-set .bubble .msg-text {
+    background: white;
+    color: black;
+    display: inline-block;
+    min-height: 25px;
+    margin-left: 10px;
+    padding: 5px;
+    width: 565px;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+}
+
+.bubble-alt {
+    background: #E2EBC0 !important;
+}
+
+.dew-mask {
+    height: 50px;
+    width: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0) 67%);
+    background-image: -webkit-gradient( linear, left top, left bottom, from(rgba(100,100,100,0.8)), to(rgba(100,100,100,0.2)), color-stop(1,#333333) );
+    position: absolute;
+    width: 670px;
+    opacity: 0.5;
+}
+
+.chat-bottom-area {
+    height: 20px;
+    width: 700px;
+}
+
+.is-typig-status {
+    color: #424242;
+    float: left;
+    font-size: 15px;
+    width: 600px;
+}
+
+.clear-log-link {
+    color: #424242;
+    display: inline-block;
+    float: right;
+    font-family: Arial, Tahoma, Trebuchet, Ubuntu;
+    font-size: 12px;
+    text-decoration: none;
 }
