@@ -5,6 +5,8 @@ $(document).ready(function () {
     var protocol_identifier = 'chat';
     var nickname = 'Guest-' + Math.floor(Math.random() * 100);
     var myId;
+    var nicklist;
+    var is_typing_indicator;
 
     var msg_bubble_colors = [
         '#FFFFFF',
@@ -45,6 +47,8 @@ $(document).ready(function () {
         if (e.which === 13 && !e.shiftKey) {
             send_msg_box_content();
             e.preventDefault();
+        } else {
+            send_user_typing_activity_alert();
         }
     });
 
@@ -97,14 +101,22 @@ $(document).ready(function () {
             add_new_msg_to_log(message);
         } else if (message.type === 'nicklist') {
             var chatter_list_html = '';
-
-            for(var i in message.nicklist) {
-                chatter_list_html += '<li>' + message.nicklist[i] + '</li>';
+            nicklist = message.nicklist;
+            for(var i in nicklist) {
+                chatter_list_html += '<li>' + nicklist[i] + '</li>';
             }
 
             chatter_list_html = '<ul>' + chatter_list_html + '</ul>';
 
             $('#chatter-list').html(chatter_list_html);
+        } else if (message.type === 'activity_typing' && parseInt(message.sender) !== parseInt(myId)) {
+            var activity_msg = message.name + ' is typing..';
+            $('#is-typig-status').html(activity_msg).fadeIn();
+            clearTimeout(is_typing_indicator);
+
+            is_typing_indicator = setTimeout(function () {
+                $('#is-typig-status').fadeOut();
+            }, 2000);
         }
 
     }
@@ -176,5 +188,15 @@ $(document).ready(function () {
         var temp_element = document.createElement('div');
         temp_element.innerHTML = text.replace(/(<([^>]+)>)/ig, '');
         return temp_element.textContent || temp_element.innerText;
+    }
+
+    function send_user_typing_activity_alert() {
+        var message_to_send = {
+            type: 'activity_typing',
+            name: nickname
+        };
+
+        var msg_data_str = JSON.stringify(message_to_send);
+        socket.send(msg_data_str);
     }
 });

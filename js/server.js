@@ -76,6 +76,13 @@ wsServer.on('request', function(request) {
 
                 console.log(message_to_send)
                 broadcast_message(message_to_send);
+            } else if (msgObj.type.match(/^activity_/)) {
+                // echo back any message type that start with activity_
+                message_to_send = JSON.parse(message.utf8Data);
+                message_to_send['sender'] = connection.id.toString();
+                message_to_send = JSON.stringify(message_to_send);
+
+                broadcast_message(message_to_send);
             }
         } else if (message.type === 'binary') {
             // At the moment, we are handling only text messages - no binary
