@@ -7,6 +7,9 @@ $(document).ready(function () {
     var myId;
     var nicklist;
     var is_typing_indicator;
+    var window_has_focus = true;
+    var actual_window_title = document.title;
+    var flash_title_timer;
 
     var msg_bubble_colors = [
         '#FFFFFF',
@@ -59,6 +62,16 @@ $(document).ready(function () {
         }
     });
 
+    $(window).focus(function() {
+        window_has_focus = true;
+        clearInterval(flash_title_timer);
+        document.title = actual_window_title;
+    });
+
+    $(window).blur(function() {
+        window_has_focus = false;
+    });
+
     function handshake_with_server() {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
         nickname = strip_html_tags(nickname);
@@ -106,6 +119,7 @@ $(document).ready(function () {
             $('#welcome-message-user-name').html(nickname);
         } else if (message.type === 'message' && parseInt(message.sender) !== parseInt(myId)) {
             add_new_msg_to_log(message);
+            blink_window_title('~ New Message ~');
         } else if (message.type === 'nicklist') {
             var chatter_list_html = '';
             nicklist = message.nicklist;
@@ -209,5 +223,17 @@ $(document).ready(function () {
 
     function clear_chat_log() {
         $('#message-log-area').html('<div class="message-area-padding"></div>');
+    }
+
+    function blink_window_title(msg_to_blink) {
+        clearInterval(flash_title_timer);
+
+        flash_title_timer = setInterval(function () {
+            if (document.title === actual_window_title) {
+                document.title = msg_to_blink;
+            } else {
+                document.title = actual_window_title;
+            }
+        }, 1000);
     }
 });
