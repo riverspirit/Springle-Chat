@@ -10,7 +10,7 @@
             <h1><img src="images/chat-icon.png" /> Socket Chat</h1>
         </header>
         
-        <div id="chat-nickname-form" class="chat-nickname-form hide">
+        <div id="chat-nickname-form" class="chat-nickname-form">
             Enter nickname: <input type="text" id="nickname" /><button id="nickname-submit" class="button">Start Chatting</button>
         </div>
 
@@ -20,93 +20,20 @@
             <p>Please wait <span id="loading-timer">5 seconds</span> while we connect you to the server.</p>
         </div>
 
-        <div id="chat-container" class="chat-container">
+        <div id="chat-container" class="chat-container hide">
             <div id="chat-main-stage" class="chat-main-stage">
-                <div class="message-log-area">
-                    
+                <div id="message-log-area" class="message-log-area">
+         <div style="height: 300px;"></div>
 
                     <div class="talk-bubble-set">
-                        <div class="name">Jack</div>
+                        <div class="name"><img src="images/smiley-smile.png" /></div>
                         <div class="bubble">
                             <span class="msg-text  bubble-alt">
-                                Hello world!
+                                Hello <span id="welcome-message-user-name"></span>, welcome to chat.
                             </span>
                         </div>
                     </div>
 
-                    <div class="talk-bubble-set">
-                        <div class="name">Saurabh</div>
-                        <div class="bubble">
-                            <span class="msg-text">
-                                Hello world!
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="talk-bubble-set">
-                        <div class="name">Jack</div>
-                        <div class="bubble">
-                            <span class="msg-text bubble-alt">
-                                teger arcu leo, viverra ut elementum et, ullamcorper ut felis. Suspendisse potenti. Cras eget erat aliquet libero aliquam ultricies eu a risus. Cras auctor lacus vitae dui condimentum sed mollis purus pretium.
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="talk-bubble-set">
-                        <div class="name">Jack</div>
-                        <div class="bubble">
-                            <span class="msg-text">
-                                teger arcu leo, viverra ut elementum et, ullamcorper ut felis. Suspendisse potenti. Cras eget erat aliquet libero aliquam ultricies eu a risus. Cras auctor lacus vitae dui condimentum sed mollis purus pretium.
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="talk-bubble-set">
-                        <div class="name">Saurabh</div>
-                        <div class="bubble">
-                            <span class="msg-text  bubble-alt">
-                                Hello world!
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="talk-bubble-set">
-                        <div class="name">Saurabh</div>
-                        <div class="bubble">
-                            <span class="msg-text">
-                                Hello world!
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="talk-bubble-set">
-                        <div class="name">Saurabh</div>
-                        <div class="bubble">
-                            <span class="msg-text">
-                                Hello world!
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="talk-bubble-set">
-                        <div class="name">Saurabh</div>
-                        <div class="bubble">
-                            <span class="msg-text">
-                                Hello world!
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="talk-bubble-set">
-                        <div class="name">Saurabh</div>
-                        <div class="bubble">
-                            <span class="msg-text">
-                                Hello world!
-                            </span>
-                        </div>
-                    </div>
-
-                    
 
                 </div>
 
@@ -152,5 +79,9 @@
         
         <script src="js/jquery-1.9.0.min.js"></script>
         <script src="js/chat_client.js"></script>
+        
+        <!-- Lets preload some images here-->
+        <img src="images/smiley-smile.png" alt="smiley1" class="hide" />
+
     </body>
 </html>
