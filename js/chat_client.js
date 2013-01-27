@@ -52,6 +52,13 @@ $(document).ready(function () {
         }
     });
 
+    $('#clear-log-link').click(function () {
+        var clear = confirm('Clear chat log?');
+        if (clear) {
+            clear_chat_log();
+        }
+    });
+
     function handshake_with_server() {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
         nickname = strip_html_tags(nickname);
@@ -198,5 +205,9 @@ $(document).ready(function () {
 
         var msg_data_str = JSON.stringify(message_to_send);
         socket.send(msg_data_str);
+    }
+
+    function clear_chat_log() {
+        $('#message-log-area').html('<div class="message-area-padding"></div>');
     }
 });

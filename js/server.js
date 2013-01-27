@@ -55,7 +55,6 @@ wsServer.on('request', function(request) {
     clients.push(connection);
     
     connection.on('message', function(message) {
-        console.log(connection.id);
         if (message.type === 'utf8') {
             //console.log(message.utf8Data)
             var msgObj = JSON.parse(message.utf8Data);
@@ -70,6 +69,8 @@ wsServer.on('request', function(request) {
 
                 broadcast_chatters_list();
             } else if (msgObj.type === 'message') {
+                console.log(message);
+
                 message_to_send = JSON.parse(message.utf8Data);
                 message_to_send['sender'] = connection.id.toString();
                 message_to_send = JSON.stringify(message_to_send);

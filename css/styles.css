@@ -272,3 +272,7 @@ body {
     font-size: 12px;
     text-decoration: none;
 }
+
+.message-area-padding {
+    height: 300px;
+}
