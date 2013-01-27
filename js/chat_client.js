@@ -208,7 +208,7 @@ $(document).ready(function () {
     function strip_html_tags(text) {
         var temp_element = document.createElement('div');
         temp_element.innerHTML = text.replace(/(<([^>]+)>)/ig, '');
-        return temp_element.textContent || temp_element.innerText;
+        return temp_element.textContent || temp_element.innerText || '--empty--';
     }
 
     function send_user_typing_activity_alert() {
