@@ -51,7 +51,7 @@ $(document).ready(function () {
 
     function handshake_with_server() {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
-
+        nickname = strip_html_tags(nickname);
         show_timer();
         open_connection();
 
@@ -135,10 +135,10 @@ $(document).ready(function () {
         var bubble_bg_color = msg_bubble_colors[message.sender % msg_bubble_colors.length];
 
         msg_string  = '<div class="talk-bubble-set hide">';
-        msg_string += '    <div class="name">' + message.nickname + '</div>';
+        msg_string += '    <div class="name">' + strip_html_tags(message.nickname) + '</div>';
         msg_string += '    <div class="bubble">';
         msg_string += '        <span class="msg-text" style="background: ' + bubble_bg_color + '">';
-        msg_string +=              message.message;
+        msg_string +=              strip_html_tags(message.message);
         msg_string +=  '       </span>';
         msg_string += '    </div>';
         msg_string += '</div>';
@@ -171,5 +171,11 @@ $(document).ready(function () {
 
             $('#loading-timer').html(time_string);
         }, 1000);
+    }
+
+    function strip_html_tags(text) {
+        var temp_element = document.createElement('div');
+        temp_element.innerHTML = text.replace(/(<([^>]+)>)/ig, '');
+        return temp_element.textContent || temp_element.innerText;
     }
 });
