@@ -23,7 +23,7 @@ NIL
 * [websocket module](https://github.com/Worlize/WebSocket-Node) for node (Server side)
 * A [websocket compliant](http://caniuse.com/websocket) browser (Client side)
 
-# Change Log
+## Change Log
 
 ###v0.2
 New Features
