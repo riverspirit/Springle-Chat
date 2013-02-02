@@ -10,7 +10,9 @@ var clients = [];
 
 var allowed_origins = [
     'localhost',
-    'rebugged.com'
+    'rebugged.com',
+    'sky.rebugged.com',
+    'springle.rebugged.com'
 ];
 
 var allowed_protocol = 'chat';
