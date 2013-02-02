@@ -166,11 +166,14 @@ $(document).ready(function () {
         var msg_string;
         var bubble_bg_color = msg_bubble_colors[message.sender % msg_bubble_colors.length];
 
+        // Lets replace \n characters with html line break before rendering to the user
+        var msg_text = strip_html_tags(message.message).split('\n').join('<br />');
+
         msg_string  = '<div class="talk-bubble-set hide">';
         msg_string += '    <div class="name">' + strip_html_tags(message.nickname) + '</div>';
         msg_string += '    <div class="bubble">';
         msg_string += '        <span class="msg-text" style="background: ' + bubble_bg_color + '">';
-        msg_string +=              strip_html_tags(message.message);
+        msg_string +=              msg_text;
         msg_string +=  '       </span>';
         msg_string += '    </div>';
         msg_string += '</div>';
