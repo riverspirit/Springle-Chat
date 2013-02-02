@@ -1,0 +1,18 @@
+{
+  "name": "Springle Chat",
+  "description": "Come. Talk.",
+  "launch_path": "/",
+  "icons": {
+    "128": "/images/app-icon-64.png"
+  },
+  "developer": {
+    "name": "Saurabh aka JSX",
+    "url": "http://rebugged.com"
+  },
+  "default_locale": "en",
+  "appcache_path": "/cache.manifest",
+  "permissions": {
+  	"tcp-socket ",
+  	"wake-lock-screen"
+  }
+}
