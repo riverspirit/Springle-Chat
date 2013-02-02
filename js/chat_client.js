@@ -1,7 +1,7 @@
 $(document).ready(function () {
     'use strict';
     var socket;
-    var server_url = 'ws://sky.rebugged.com:8804/';
+    var server_url = 'ws://springle.rebugged.com:8804/';
     var protocol_identifier = 'chat';
     var nickname = 'Guest-' + Math.floor(Math.random() * 100);
     var myId;

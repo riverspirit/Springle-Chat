@@ -10,8 +10,6 @@ var clients = [];
 
 var allowed_origins = [
     'localhost',
-    'rebugged.com',
-    'sky.rebugged.com',
     'springle.rebugged.com'
 ];
 
