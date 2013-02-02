@@ -10,9 +10,5 @@
     "url": "http://rebugged.com"
   },
   "default_locale": "en",
-  "appcache_path": "/cache.manifest",
-  "permissions": {
-  	"tcp-socket ",
-  	"wake-lock-screen"
-  }
+  "appcache_path": "/cache.manifest"
 }
