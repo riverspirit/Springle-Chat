@@ -17,8 +17,8 @@ var allowed_protocol = 'chat';
 
 var connection_id = 0;
 
-server.listen(8080, function() {
-    console.log((new Date()) + ' Server is listening on port 8080');
+server.listen(8804, function() {
+    console.log((new Date()) + ' Server is listening on port 8804');
 });
 
 wsServer = new WebSocketServer({
