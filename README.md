@@ -3,7 +3,7 @@ Websocket-Chat
 
 Realtime chat using NodeJS and WebSocket
 
-Demo at http://rebugged.com/code/websocket-chat/
+Demo at http://springle.rebugged.com/
 
 (<i>Demo shown at the above link might not reflect the latest changes in code</i>)
 
