@@ -226,14 +226,16 @@ $(document).ready(function () {
     }
 
     function blink_window_title(msg_to_blink) {
-        clearInterval(flash_title_timer);
+        if (!window_has_focus) {
+            clearInterval(flash_title_timer);
 
-        flash_title_timer = setInterval(function () {
-            if (document.title === actual_window_title) {
-                document.title = msg_to_blink;
-            } else {
-                document.title = actual_window_title;
+                flash_title_timer = setInterval(function () {
+                    if (document.title === actual_window_title) {
+                        document.title = msg_to_blink;
+                    } else {
+                        document.title = actual_window_title;
+                    }
+                }, 1000);
             }
-        }, 1000);
-    }
+        }
 });
