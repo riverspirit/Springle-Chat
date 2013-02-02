@@ -23,6 +23,7 @@ body {
     float: left;
     height: 50px;
     padding: 4px;
+    resize: none;
     width: 700px;
 }
 
