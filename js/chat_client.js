@@ -240,6 +240,8 @@ $(document).ready(function () {
 
     function blink_window_title(msg_to_blink) {
         if (!window_has_focus) {
+            play_notification_sound();
+            
             clearInterval(flash_title_timer);
 
                 flash_title_timer = setInterval(function () {
@@ -250,5 +252,9 @@ $(document).ready(function () {
                     }
                 }, 1000);
             }
-        }
+    }
+
+    function play_notification_sound() {
+        document.getElementById('chat-notification-sound').play();
+    }
 });
