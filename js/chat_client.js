@@ -1,3 +1,11 @@
+/**
+ * Springle Chat
+ *
+ * @author Saurabh aka JSX <saurabh@rebugged.com>
+ * @copyright 
+ * @license GNU AFFERO GENERAL PUBLIC LICENSE v3
+ */
+
 $(document).ready(function () {
     'use strict';
     var socket;
