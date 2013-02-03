@@ -351,12 +351,13 @@ body {
     }
 
     .msg-box {
-        width: 75%;
+        width: 79%;
     }
 
     .send-btn {
-        height: 28px;
+        height: 17px;
         margin-left: 1px;
+        padding: 15px 3px;
         width: 17%;
     }
 
@@ -406,5 +407,10 @@ body {
     h1 span img {
         height: 20px;
     }
+}
 
+@media all and (max-width: 225px) {
+    .send-btn {
+        width: 14%;
+    }
 }
