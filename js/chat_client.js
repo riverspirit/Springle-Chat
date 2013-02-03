@@ -152,8 +152,10 @@ $(document).ready(function () {
 
     function send_msg_box_content() {
         var message = $('#msg-box').val();
-        send_message(message);
-        $('#msg-box').val('');
+        if (message != '') {
+            send_message(message);
+            $('#msg-box').val('');
+        }
     }
 
     function send_message(message) {
