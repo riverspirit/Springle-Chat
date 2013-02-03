@@ -122,7 +122,6 @@ body {
 
 .header span {
     float: left;
-    margin-top: 7px;
 }
 
 .header span a {
@@ -130,6 +129,10 @@ body {
     text-decoration: none;
     display: inline-block;
     border-bottom: 1px dotted white;
+}
+
+.header .icon {
+    margin-top: 2px;
 }
 
 .hide {
@@ -276,4 +279,132 @@ body {
 
 .message-area-padding {
     height: 300px;
+}
+
+
+/**
+ * FOR SMALLER DEVICES
+ */
+
+@media all and (max-width: 350px) {
+
+    .github-link {
+        display: none;
+    }
+}
+
+@media all and (max-width: 320px) {
+
+    .chat-nickname-form label {
+        display: block;
+    }
+
+    .chat-nickname-form button {
+        border: 1px solid #84C0E5;
+        border-radius: 6px;
+        display: block;
+        font-size: 17px;
+        font-weight: bold;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+   .chat-nickname-form button:active {
+        border: 1px solid #69ADDE;
+    }
+
+    .chat-nickname-form input[type=text] {
+        border: 1px solid #84C0E5;
+        display: block;
+        font-size: 17px;
+        font-weight: bold;
+        margin: 5px auto;
+        margin-top: 5px;
+        text-align: center;
+        width: 80%;
+    }
+
+    .chat-nickname-form input[type=text]:focus {
+        border: 1px solid #69ADDE;
+    }
+
+    .header .part-2 {
+        display: none;
+    }
+
+    .github-link {
+        display: none;
+    }
+
+    .chat-container {
+        width: auto;
+    }
+
+    .send-msg {
+        height: auto;
+        margin-top: 0;
+        width: auto;
+    }
+
+    .chat-bottom-area {
+        display: none;
+    }
+
+    .msg-box {
+        width: 75%;
+    }
+
+    .send-btn {
+        height: 28px;
+        margin-left: 1px;
+        width: 17%;
+    }
+
+    .chatter-list-sidebar {
+        display: none;
+    }
+
+    .chat-main-stage,
+    .message-log-area,
+    .bubble {
+        width: 100% !important;
+    }
+
+    .bubble {
+        margin-left: 0 !important;
+    }
+
+    .msg-text {
+        margin: 0 !important;
+        width: 95% !important;
+    }
+
+    .message-log-area {
+        height: 250px;
+    }
+
+    .chat-main-stage {
+        height: 250px;
+    }
+
+    .talk-bubble-set .name {
+        text-align: left;
+    }
+
+    .welcome-smiley {
+        display: none;
+    }
+
+    .message-area-padding {
+        height: 50px;
+    }
+
+    h1 span {
+        font-size: 16px;
+    }
+
+    h1 span img {
+        height: 20px;
+    }
+
 }

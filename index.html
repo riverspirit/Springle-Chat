@@ -6,12 +6,12 @@
     </head>
     <body>
         <header class="header">
-            <span>Code is on <a href="https://github.com/riverspirit/Springle-Chat">Github</a></span>
-            <h1><img src="images/chat-icon.png" /> Springle Chat</h1>
+            <span class="github-link">Code is on <a href="https://github.com/riverspirit/Springle-Chat">Github</a></span>
+            <h1><span class="icon"><img src="images/app-icon-64.png" height="40" /></span> <span class="part-1">Springle</span> <span class="part-2">&nbsp;Chat</span></h1>
         </header>
         
         <div id="chat-nickname-form" class="chat-nickname-form">
-            Enter nickname: <input type="text" id="nickname" /><button id="nickname-submit" class="button">Start Chatting</button>
+            <label for="nickname">Enter nickname: </label><input type="text" id="nickname" /><button id="nickname-submit" class="button">Start Chatting</button>
         </div>
 
         <div id="loading-message" class="loading-msg hide">
@@ -26,7 +26,7 @@
                 <div class="message-area-padding"></div>
 
                     <div class="talk-bubble-set">
-                        <div class="name"><img src="images/smiley-smile.png" /></div>
+                        <div class="name"><img src="images/smiley-smile.png" class="welcome-smiley" /></div>
                         <div class="bubble">
                             <span class="msg-text  bubble-alt">
                                 Hello <span id="welcome-message-user-name"></span>, welcome to chat.
