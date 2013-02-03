@@ -1,5 +1,5 @@
-Websocket-Chat
-==============
+Springle Chat
+=============
 
 Realtime chat using NodeJS and WebSocket
 
