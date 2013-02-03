@@ -414,3 +414,14 @@ body {
         width: 14%;
     }
 }
+
+@media all and (max-width: 130px) {
+    .send-btn {
+        font-size: 18px;
+        width: 90%;
+    }
+
+    .msg-box {
+        width: 98%;
+    }
+}
