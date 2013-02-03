@@ -25,6 +25,15 @@ NIL
 
 ## Change Log
 
+###v0.3
+New Features
+* Sound notification for chat ([#4](https://github.com/riverspirit/Websocket-Chat/issues/4))
+* Convert to installable HTML5 web app ([#13](https://github.com/riverspirit/Websocket-Chat/issues/13))
+
+Fixes
+* Prevent users from sending empty messages ([#10](https://github.com/riverspirit/Websocket-Chat/issues/10))
+* Do not strip away newline characters from messages ([#12](https://github.com/riverspirit/Websocket-Chat/issues/12))
+
 ###v0.2
 New Features
 * New and improved UI.
@@ -36,3 +45,6 @@ New Features
 ###v0.1
 Features
 * Basic functional system with multi-user chat
+
+## License
+Source code is released under GNU Affero General Public License v3. See included file `license.txt` for details.
