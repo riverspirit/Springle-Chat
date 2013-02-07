@@ -3,7 +3,8 @@
   "description": "Come. Talk.",
   "launch_path": "/",
   "icons": {
-    "128": "/images/app-icon-64.png"
+    "64": "/images/app-icon-64.png",
+    "128": "/images/app-icon-128.png"
   },
   "developer": {
     "name": "Saurabh aka JSX",
