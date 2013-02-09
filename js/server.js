@@ -15,6 +15,7 @@ var server = http.createServer(function(request, response) {
 });
 
 var clients = [];
+var chat_rooms = {};
 
 var allowed_origins = [
     'localhost',
@@ -26,7 +27,7 @@ var allowed_protocol = 'chat';
 var connection_id = 0;
 
 server.listen(8804, function() {
-    console.log((new Date()) + ' Server is listening on port 8804');
+    console.log((new Date()) + ' Springle server is listening on port 8804');
 });
 
 wsServer = new WebSocketServer({
@@ -59,39 +60,42 @@ wsServer.on('request', function(request) {
 
     var connection = request.accept('chat', request.origin);
     connection.id = connection_id++;
-
-    clients.push(connection);
     
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
-            //console.log(message.utf8Data)
             var msgObj = JSON.parse(message.utf8Data);
             
             if (msgObj.type === 'intro') {
                 connection.nickname = msgObj.nickname;
+                connection.chatroom = msgObj.chatroom;
+
+                if (chat_rooms[msgObj.chatroom] !== undefined) {
+                    chat_rooms[msgObj.chatroom].push(connection);
+                } else {
+                    chat_rooms[msgObj.chatroom] = [connection];
+                }
 
                 connection.sendUTF(JSON.stringify({
                     type: 'welcome',
                     userId:connection.id
                 }));
 
-                broadcast_chatters_list();
+                broadcast_chatters_list(msgObj.chatroom);
             } else if (msgObj.type === 'message') {
-                console.log(message);
 
                 message_to_send = JSON.parse(message.utf8Data);
                 message_to_send['sender'] = connection.id.toString();
                 message_to_send = JSON.stringify(message_to_send);
 
                 console.log(message_to_send)
-                broadcast_message(message_to_send);
+                broadcast_message(message_to_send, msgObj.chatroom);
             } else if (msgObj.type.match(/^activity_/)) {
                 // echo back any message type that start with activity_
                 message_to_send = JSON.parse(message.utf8Data);
                 message_to_send['sender'] = connection.id.toString();
                 message_to_send = JSON.stringify(message_to_send);
 
-                broadcast_message(message_to_send);
+                broadcast_message(message_to_send, msgObj.chatroom);
             }
         } else if (message.type === 'binary') {
             // At the moment, we are handling only text messages - no binary
@@ -101,34 +105,41 @@ wsServer.on('request', function(request) {
     
 
     connection.on('close', function(reasonCode, description) {
-        for (var i in clients) {
-            if (connection.id === clients[i].id) {
-                clients.splice(i, 1);
-                broadcast_chatters_list();
+        var chatroom = connection.chatroom;
+        var users = chat_rooms[chatroom];
+
+        for (var i in users) {
+            if (connection.id === users[i].id) {
+                chat_rooms[chatroom].splice(i, 1);
+                broadcast_chatters_list(connection.chatroom);
             }
         }
         console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
     });
     
-    function broadcast_message(message) {
-        for (var i in clients) {
-            clients[i].sendUTF(message);
+    function broadcast_message(message, chatroom) {
+        var users = chat_rooms[chatroom];
+
+        for (var i in users) {
+            users[i].sendUTF(message);
         }
     }
     
-    function broadcast_chatters_list() {
+    function broadcast_chatters_list(chatroom) {
         var nicklist = [];
         var msg_to_send;
+        var users = chat_rooms[chatroom];
         
-        for (var i in clients) {
-            nicklist.push(clients[i].nickname);
+        for (var i in users) {
+            nicklist.push(users[i].nickname);
         }
         
         msg_to_send = JSON.stringify({
             type: 'nicklist',
             nicklist: nicklist
         });
-        broadcast_message(msg_to_send);
+
+        broadcast_message(msg_to_send, chatroom);
     }
     
     function send_poke() {

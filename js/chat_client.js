@@ -10,8 +10,10 @@ $(document).ready(function () {
     'use strict';
     var socket;
     var server_url = 'ws://springle.rebugged.com:8804/';
+    var server_url = 'ws://localhost:8804/';
     var protocol_identifier = 'chat';
     var nickname = 'Guest-' + Math.floor(Math.random() * 100);
+    var chatroom = 'public';
     var myId;
     var nicklist;
     var is_typing_indicator;
@@ -36,14 +38,14 @@ $(document).ready(function () {
         $('#chat-nickname-form').html('Your browser <strong>doesnt</strong> support '
                                  + 'websockets :( <br/>Please use an updated version '
                                  + 'of a modern browser, such as <a href="http://www.firefox.com/">Firefox</a> '
-                                 + 'or <a href="http://www.google.com/chrome">Google Chrome</a>');
+                                 + 'or <a href="http://www.google.com/chrome">Google Chrome</a>.');
     }
 
     $('#nickname-submit').click(function () {
         handshake_with_server();
     });
 
-    $('#nickname').keypress(function (e) {
+    $('#nickname, #chatroom').keypress(function (e) {
         if (e.which === 13) {
             handshake_with_server();
         }
@@ -83,6 +85,8 @@ $(document).ready(function () {
     function handshake_with_server() {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
         nickname = strip_html_tags(nickname);
+        chatroom = $('#chatroom').val() !== '' ? $('#chatroom').val() : chatroom;
+        chatroom = strip_html_tags(chatroom);
         show_timer();
         open_connection();
 
@@ -101,6 +105,7 @@ $(document).ready(function () {
     function connection_established(event) {
         introduce(nickname);
         socket.addEventListener('message', function (event) {
+            console.log(event.data)
             message_received(event.data);
         });
     }
@@ -108,7 +113,8 @@ $(document).ready(function () {
     function introduce(nickname) {
         var intro = {
             type: 'intro',
-            nickname: nickname
+            nickname: nickname,
+            chatroom: chatroom
         }
 
         socket.send(JSON.stringify(intro));
@@ -163,7 +169,8 @@ $(document).ready(function () {
             type: 'message',
             nickname: nickname,
             message: message,
-            sender: myId
+            sender: myId,
+            chatroom: chatroom
         };
 
         var msg_data_str = JSON.stringify(message_to_send);
@@ -227,7 +234,8 @@ $(document).ready(function () {
     function send_user_typing_activity_alert() {
         var message_to_send = {
             type: 'activity_typing',
-            name: nickname
+            name: nickname,
+            chatroom: chatroom
         };
 
         var msg_data_str = JSON.stringify(message_to_send);
