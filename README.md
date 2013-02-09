@@ -26,21 +26,26 @@ NIL
 
 ## Change Log
 
+###v0.4
+New Features
+* Added facility to create and join chat rooms ([#5](https://github.com/riverspirit/Springle-Chat/issues/5))
+* Some improvisions in fonts used.
+
 ###v0.3
 New Features
-* Sound notification for chat ([#4](https://github.com/riverspirit/Websocket-Chat/issues/4))
-* Convert to installable HTML5 web app ([#13](https://github.com/riverspirit/Websocket-Chat/issues/13))
+* Sound notification for chat ([#4](https://github.com/riverspirit/Springle-Chat/issues/4))
+* Convert to installable HTML5 web app ([#13](https://github.com/riverspirit/Springle-Chat/issues/13))
 
 Fixes
-* Prevent users from sending empty messages ([#10](https://github.com/riverspirit/Websocket-Chat/issues/10))
-* Do not strip away newline characters from messages ([#12](https://github.com/riverspirit/Websocket-Chat/issues/12))
+* Prevent users from sending empty messages ([#10](https://github.com/riverspirit/Springle-Chat/issues/10))
+* Do not strip away newline characters from messages ([#12](https://github.com/riverspirit/Springle-Chat/issues/12))
 
 ###v0.2
 New Features
 * New and improved UI.
-* 'User is typing...' status message ([Ticket #1](https://github.com/riverspirit/Websocket-Chat/issues/1))
-* Show flashing title bar when there is new activity in the chat page. ([Ticket #2](https://github.com/riverspirit/Websocket-Chat/issues/2))
-* Bug fix: HTML tags in user input are stripped prior to rendering. ([Ticket #3](https://github.com/riverspirit/Websocket-Chat/issues/3))
+* 'User is typing...' status message ([Ticket #1](https://github.com/riverspirit/Springle-Chat/issues/1))
+* Show flashing title bar when there is new activity in the chat page. ([Ticket #2](https://github.com/riverspirit/Springle-Chat/issues/2))
+* Bug fix: HTML tags in user input are stripped prior to rendering. ([Ticket #3](https://github.com/riverspirit/Springle-Chat/issues/3))
 * Link to clear chat history.
 
 ###v0.1
