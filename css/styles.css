@@ -3,6 +3,11 @@
 	src: url('../fonts/opensans/OpenSans-CondLight.ttf');
 }
 
+@font-face {
+    font-family: Ubuntu;
+    src: url('../fonts/Ubuntu-Regular.ttf');
+}
+
 * {
     margin: 0px;
     font-family: OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
@@ -57,6 +62,7 @@ body {
     color: #333333;
     cursor: pointer;
     display: inline-block;
+    font-family: Ubuntu, OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
     font-size: 13px;
     line-height: 18px;
     padding: 4px 10px;
@@ -282,6 +288,10 @@ body {
 }
 
 
+.nick-form {
+    font-family: Ubuntu, OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
+}
+
 /**
  * FOR SMALLER DEVICES
  */
@@ -294,6 +304,19 @@ body {
 }
 
 @media all and (max-width: 320px) {
+
+    .button {
+        font-family: OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
+    }
+
+    .nick-form {
+        font-family: OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
+        margin-top: -20px !important;
+    }
+
+    .chatroom-label {
+        margin-top: -15px !important;
+    }
 
     .chat-nickname-form label {
         display: block;
@@ -413,6 +436,15 @@ body {
     .send-btn {
         width: 14%;
     }
+
+    .button {
+        font-family: OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
+    }
+
+    .nick-form {
+        font-family: OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
+        margin-top: -20px !important;
+    }
 }
 
 @media all and (max-width: 130px) {
@@ -423,5 +455,14 @@ body {
 
     .msg-box {
         width: 98%;
+    }
+
+    .button {
+        font-family: OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
+    }
+
+    .nick-form {
+        font-family: OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
+        margin-top: -20px !important;
     }
 }
