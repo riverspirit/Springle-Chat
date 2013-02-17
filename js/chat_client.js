@@ -110,7 +110,6 @@ $(document).ready(function () {
     function connection_established(event) {
         introduce(nickname);
         socket.addEventListener('message', function (event) {
-            console.log(event.data)
             message_received(event.data);
         });
     }
