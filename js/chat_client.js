@@ -18,10 +18,11 @@ $(document).ready(function () {
     var window_has_focus = true;
     var actual_window_title = document.title;
     var flash_title_timer;
+    var enable_ssl = true;
 
-    if (location.protocol === 'http:') {
+    if (enable_ssl === false) {
         var server_url = 'ws://sky.rebugged.com:8804/';
-    } else if (location.protocol === 'https:') {
+    } else {
         var server_url = 'wss://sky.rebugged.com:8805/';
     }
 
