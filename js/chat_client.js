@@ -9,7 +9,6 @@
 $(document).ready(function () {
     'use strict';
     var socket;
-    var server_url = 'ws://springle.rebugged.com:8804/';
     var protocol_identifier = 'chat';
     var nickname = 'Guest-' + Math.floor(Math.random() * 100);
     var chatroom = 'public';
@@ -19,6 +18,12 @@ $(document).ready(function () {
     var window_has_focus = true;
     var actual_window_title = document.title;
     var flash_title_timer;
+
+    if (location.protocol === 'http:') {
+        var server_url = 'ws://sky.rebugged.com:8804/';
+    } else if (location.protocol === 'https:') {
+        var server_url = 'wss://sky.rebugged.com:8805/';
+    }
 
     var msg_bubble_colors = [
         '#FFFFFF',
