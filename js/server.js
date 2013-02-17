@@ -7,12 +7,37 @@
  */
 
 var WebSocketServer = require('websocket').server;
-var http = require('http');
 
-var server = http.createServer(function(request, response) {
-    response.writeHead(404);
-    response.end();
-});
+// Check if SSL support is enabled
+if (process.argv.indexOf('--enable-ssl') !== -1) {
+    var https = require('https');
+    var fs = require('fs');
+
+    var options = {
+        key: fs.readFileSync('/home/conf/ssl.key'),
+        cert: fs.readFileSync('/home/conf/ssl.crt')
+    };
+
+    var server = https.createServer(options, function(request, response) {
+        response.writeHead(404);
+        response.end();
+    });
+
+    var port = 8805;
+    var server_start_message = (new Date()) + ' Springle server with SSL is listening on port ' + port;
+} else {
+    var http = require('http');
+
+    var server = http.createServer(function(request, response) {
+        response.writeHead(404);
+        response.end();
+    });
+
+    var port = 8804;
+    var server_start_message = (new Date()) + ' Springle server is listening on port ' + port;
+}
+
+
 
 var clients = [];
 var chat_rooms = {};
@@ -26,8 +51,8 @@ var allowed_protocol = 'chat';
 
 var connection_id = 0;
 
-server.listen(8804, function() {
-    console.log((new Date()) + ' Springle server is listening on port 8804');
+server.listen(port, function() {
+    console.log(server_start_message);
 });
 
 wsServer = new WebSocketServer({
