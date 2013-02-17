@@ -44,7 +44,9 @@ var chat_rooms = {};
 
 var allowed_origins = [
     'localhost',
-    'springle.rebugged.com'
+    'springle.rebugged.com',
+    'sky.rebugged.com',
+    'mozilla.net'
 ];
 
 var allowed_protocol = 'chat';
