@@ -26,6 +26,10 @@ NIL
 
 ## Change Log
 
+###v0.4.1
+New features
+* SSL support for Websocket communication
+
 ###v0.4
 New Features
 * Added facility to create and join chat rooms ([#5](https://github.com/riverspirit/Springle-Chat/issues/5))
@@ -54,3 +58,4 @@ Features
 
 ## License
 Source code is released under GNU Affero General Public License v3. See included file `license.txt` for details.
+
