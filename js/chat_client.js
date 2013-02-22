@@ -77,6 +77,25 @@ $(document).ready(function () {
         }
     });
 
+    // Show chat room title on page
+    update_chat_room_title_displayed();
+
+    $('body').on('keyup change paste cut', '#chatroom', function () {
+        update_chat_room_title_displayed($('#chatroom').val());
+    });
+
+    // Show page share url
+    $('#room-share-url').val(window.location);
+
+    $(window).on('hashchange', function () {
+        update_chat_room_title_displayed(window.location.hash.substr(1));
+    });
+
+    // Select and highlight room share url when clicked
+    $('body').on('focus', '#room-share-url', function () {
+        $('#room-share-url').select();
+    });
+
     $(window).focus(function() {
         window_has_focus = true;
         clearInterval(flash_title_timer);
@@ -92,6 +111,9 @@ $(document).ready(function () {
         nickname = strip_html_tags(nickname);
         chatroom = $('#chatroom').val() !== '' ? $('#chatroom').val() : chatroom;
         chatroom = strip_html_tags(chatroom);
+        
+        window.location.hash = '#' + chatroom;
+
         show_timer();
         open_connection();
 
@@ -268,5 +290,34 @@ $(document).ready(function () {
 
     function play_notification_sound() {
         document.getElementById('chat-notification-sound').play();
+    }
+
+    function update_chat_room_title_displayed(room_name) {
+        if (myId !== undefined) {
+            // If chat is already in progress, return false
+            return false;
+        }
+
+        var chat_url = window.location.protocol
+                     + '//'
+                     + window.location.hostname
+                     + window.location.pathname;
+
+        if (room_name === undefined) {
+            room_name = window.location.hash.substr(1);
+            chat_url = window.location;
+        } else if (room_name !== '') {
+            chat_url += '#' + room_name;
+        }
+        
+        $('#chatroom').val(room_name);
+
+        if (room_name === '') {
+            room_name = 'Public Room';
+        }
+
+        $('#room-title').html(room_name);
+        
+        $('#room-share-url').val(chat_url);
     }
 });

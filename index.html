@@ -7,7 +7,7 @@
     </head>
     <body>
         <header class="header">
-            <span class="github-link">Code is on <a href="https://github.com/riverspirit/Springle-Chat">Github</a></span>
+            <h2 class="room-title" id="room-title">Public Room</h2>
             <h1><span class="icon"><img src="images/app-icon-64.png" height="40" /></span> <span class="part-1">Springle</span> <span class="part-2">&nbsp;Chat</span></h1>
         </header>
         
@@ -21,6 +21,12 @@
             <input type="text" id="chatroom" class="nick-form" placeholder="Public Room"/>
             <br/>
             <button id="nickname-submit" class="button nick-form">Start Chatting</button>
+
+            <br/><br/>
+            <label for="nickname-submit"><i>Share this link to invite someone to this chat room</i>: </label>
+            <br />
+            <input type="text" id="room-share-url" class="nick-form room-share-url" readonly="readonly" />
+            <br/>
         </div>
 
         <div id="loading-message" class="loading-msg hide">

@@ -292,6 +292,17 @@ body {
     font-family: Ubuntu, OpenSansLight, Arial, Tahoma, Ubuntu, "Sans serif";
 }
 
+.room-title {
+    float: left;
+}
+
+.room-share-url {
+    background: #ECECEC;
+    border: 0 none;
+    text-align: center;
+    width: 100%;
+}
+
 /**
  * FOR SMALLER DEVICES
  */
@@ -353,6 +364,10 @@ body {
 
     .header .part-2 {
         display: none;
+    }
+
+    .room-title {
+        font-size: 18px;
     }
 
     .github-link {
