@@ -26,10 +26,14 @@ NIL
 
 ## Change Log
 
+###v0.4.2.1
+Bug fix
+* Now desktop notification code is invoked only after browser support for it is checked.
+
 ###v0.4.2
 New features
 * Direct links to chatrooms
-* Desktop notifications for new messages (when chat window not in focus). ([Ticket #16](https://github.com/riverspirit/Springle-Chat/issues/16))
+* Desktop notifications for new messages (when chat window not in focus). ([#16](https://github.com/riverspirit/Springle-Chat/issues/16))
 
 ###v0.4.1
 New features
@@ -53,8 +57,8 @@ Fixes
 New Features
 * New and improved UI.
 * 'User is typing...' status message ([Ticket #1](https://github.com/riverspirit/Springle-Chat/issues/1))
-* Show flashing title bar when there is new activity in the chat page. ([Ticket #2](https://github.com/riverspirit/Springle-Chat/issues/2))
-* Bug fix: HTML tags in user input are stripped prior to rendering. ([Ticket #3](https://github.com/riverspirit/Springle-Chat/issues/3))
+* Show flashing title bar when there is new activity in the chat page. ([#2](https://github.com/riverspirit/Springle-Chat/issues/2))
+* Bug fix: HTML tags in user input are stripped prior to rendering. ([#3](https://github.com/riverspirit/Springle-Chat/issues/3))
 * Link to clear chat history.
 
 ###v0.1
@@ -63,5 +67,6 @@ Features
 
 ## License
 Source code is released under GNU Affero General Public License v3. See included file `license.txt` for details.
+
 
 
