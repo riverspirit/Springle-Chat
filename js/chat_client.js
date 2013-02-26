@@ -107,7 +107,9 @@ $(document).ready(function () {
     });
     
     // Request permission to show desktop notifications
-    window.webkitNotifications.requestPermission();
+    if (window.webkitNotifications) {
+        window.webkitNotifications.requestPermission();
+    }
 
     function handshake_with_server() {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
@@ -327,6 +329,11 @@ $(document).ready(function () {
     }
     
     function showDesktopNotification(title, message) {
+        if (window.webkitNotifications === undefined) {
+            // Desktop notifications are not supported
+            return;
+        }
+        
         if (window.webkitNotifications.checkPermission() == 0) {
             var notification = window.webkitNotifications.createNotification('', title, message);
             notification.show();
