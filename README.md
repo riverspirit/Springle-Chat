@@ -29,7 +29,7 @@ NIL
 ###v0.4.2
 New features
 * Direct links to chatrooms
-* Desktop notifications for new messages (when chat window not in focus).
+* Desktop notifications for new messages (when chat window not in focus). ([Ticket #16](https://github.com/riverspirit/Springle-Chat/issues/16))
 
 ###v0.4.1
 New features
