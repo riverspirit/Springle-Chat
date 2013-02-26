@@ -105,6 +105,9 @@ $(document).ready(function () {
     $(window).blur(function() {
         window_has_focus = false;
     });
+    
+    // Request permission to show desktop notifications
+    window.webkitNotifications.requestPermission();
 
     function handshake_with_server() {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
