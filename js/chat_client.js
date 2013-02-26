@@ -160,6 +160,7 @@ $(document).ready(function () {
         } else if (message.type === 'message' && parseInt(message.sender) !== parseInt(myId)) {
             add_new_msg_to_log(message);
             blink_window_title('~ New Message ~');
+            showNewMessageDesktopNotification(message.nickname, message.message);
         } else if (message.type === 'nicklist') {
             var chatter_list_html = '';
             nicklist = message.nicklist;
@@ -319,5 +320,29 @@ $(document).ready(function () {
         $('#room-title').html(room_name);
         
         $('#room-share-url').val(chat_url);
+    }
+    
+    function showDesktopNotification(title, message) {
+        if (window.webkitNotifications.checkPermission() == 0) {
+            var notification = window.webkitNotifications.createNotification('', title, message);
+            notification.show();
+            window.setTimeout(function () {
+                notification.cancel();
+            }, 5000);
+        } else {
+            window.webkitNotifications.requestPermission(function () {
+                if (window.webkitNotifications.checkPermission() == 0) {
+                    var notification = window.webkitNotifications.createNotification('', title, message);
+                    notification.show();
+                    window.setTimeout(function () {
+                        notification.cancel();
+                    }, 5000);
+                }
+            });
+        }
+    }
+    
+    function showNewMessageDesktopNotification(user, message) {
+        showDesktopNotification(user, message);
     }
 });

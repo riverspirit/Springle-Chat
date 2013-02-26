@@ -11,5 +11,10 @@
     "url": "http://rebugged.com"
   },
   "default_locale": "en",
-  "appcache_path": "/cache.manifest"
+  "appcache_path": "/cache.manifest",
+  "permissions": {
+    "desktop-notification": {
+      "description": "Required to show alerts on new messages."
+    }
+  }
 }
