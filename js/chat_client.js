@@ -113,6 +113,7 @@ $(document).ready(function () {
         nickname = $('#nickname').val() !== '' ? $('#nickname').val() : nickname;
         nickname = strip_html_tags(nickname);
         chatroom = $('#chatroom').val() !== '' ? $('#chatroom').val() : chatroom;
+        chatroom = (chatroom === 'Public Room') ? 'public' : chatroom;
         chatroom = strip_html_tags(chatroom);
         
         window.location.hash = '#' + chatroom;
@@ -316,7 +317,7 @@ $(document).ready(function () {
         
         $('#chatroom').val(room_name);
 
-        if (room_name === '') {
+        if (room_name === '' || room_name === 'public') {
             room_name = 'Public Room';
         }
 

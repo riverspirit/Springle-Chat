@@ -26,6 +26,11 @@ NIL
 
 ## Change Log
 
+###v0.4.2
+New features
+* Direct links to chatrooms
+* Desktop notifications for new messages (when chat window not in focus).
+
 ###v0.4.1
 New features
 * SSL support for Websocket communication
@@ -58,4 +63,5 @@ Features
 
 ## License
 Source code is released under GNU Affero General Public License v3. See included file `license.txt` for details.
+
 
