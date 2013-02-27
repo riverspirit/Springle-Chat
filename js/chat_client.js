@@ -19,6 +19,8 @@ $(document).ready(function () {
     var actual_window_title = document.title;
     var flash_title_timer;
     var enable_ssl = true;
+    var connected = false;
+    var connection_retry_timer;
 
     if (enable_ssl === false) {
         var server_url = 'ws://sky.rebugged.com:8804/';
@@ -120,6 +122,7 @@ $(document).ready(function () {
         
         window.location.hash = '#' + chatroom;
 
+        //connection_in_progress = true;
         show_timer();
         open_connection();
 
@@ -136,9 +139,19 @@ $(document).ready(function () {
     }
 
     function connection_established(event) {
+        connected = true;
+        hideConnectionLostMessage();
+        clearInterval(connection_retry_timer);
+
         introduce(nickname);
         socket.addEventListener('message', function (event) {
             message_received(event.data);
+        });
+        
+        socket.addEventListener('close', function (event) {
+            connected = false;
+            showConnectionLostMessage();
+            reConnect();
         });
     }
 
@@ -355,5 +368,29 @@ $(document).ready(function () {
     
     function showNewMessageDesktopNotification(user, message) {
         showDesktopNotification(user, message);
+    }
+    
+    function reConnect() {
+        if (!connected) {
+            connection_retry_timer = setInterval(function () {
+                if (socket.readyState === 3) { // 3 => Connection closed
+                    open_connection();
+                }
+            }, 1000);
+        } else {
+            clearTimeout(connection_retry_timer);
+        }
+    }
+    
+    function showConnectionLostMessage() {
+        $('#send-msg textarea, #send-msg span').hide();
+        $('#connection-lost-message').fadeIn();
+    }
+    
+    function hideConnectionLostMessage() {
+        if ($('#connection-lost-message').is(':visible')) {
+            $('#connection-lost-message').hide();
+            $('#send-msg textarea, #send-msg span').fadeIn();   
+        }
     }
 });

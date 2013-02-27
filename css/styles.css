@@ -303,6 +303,10 @@ body {
     width: 100%;
 }
 
+.connection-lost-message img {
+    margin-bottom:-6px;
+}
+
 /**
  * FOR SMALLER DEVICES
  */
