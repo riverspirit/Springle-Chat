@@ -3,7 +3,7 @@ Springle Chat
 
 Realtime chat using NodeJS and WebSocket
 
-Demo at http://springle.rebugged.com/
+Demo at https://sky.rebugged.com/ (Running version 0.4.3)
 
 (<i>Demo shown at the above link might not reflect the latest changes in code</i>)
 
