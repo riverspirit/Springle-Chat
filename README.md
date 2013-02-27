@@ -26,6 +26,10 @@ NIL
 
 ## Change Log
 
+###v0.4.3
+New features
+* Added facility to detect when connection is closed and ability to automatically reconnect. ([#14](https://github.com/riverspirit/Springle-Chat/issues/14))
+
 ###v0.4.2.1
 Bug fix
 * Now desktop notification code is invoked only after browser support for it is checked.
@@ -67,6 +71,7 @@ Features
 
 ## License
 Source code is released under GNU Affero General Public License v3. See included file `license.txt` for details.
+
 
 
 
