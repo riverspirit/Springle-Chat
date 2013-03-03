@@ -4,7 +4,7 @@ CACHE MANIFEST
 index.html
 
 # Style
-css/style.css
+css/styles.css
 
 # Script
 js/chat_client.js
