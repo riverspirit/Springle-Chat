@@ -1,0 +1,21 @@
+{
+  "name": "Springle Chat",
+  "description": "Easist way to hold a quick group chat with your friends!",
+  "version": "0.4.2",
+  "manifest_version": 2,
+  "icons": {
+    "128": "images/app-icon-128.png"
+  },
+  "app": {
+    "urls": [
+      "https://sky.rebugged.com/"
+    ],
+    "launch": {
+      "web_url": "https://sky.rebugged.com/"
+    }
+  },
+  "permissions": [
+    "unlimited_storage",
+    "notifications"
+  ]
+}
