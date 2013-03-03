@@ -1,0 +1,29 @@
+CACHE MANIFEST
+
+# HTML
+index.html
+
+# Style
+css/style.css
+
+# Script
+js/chat_client.js
+js/jquery-1.9.0.min.js
+
+# Images
+images/app-icon-128.png 
+images/bg1.png
+images/cloud.gif
+images/loader.gif
+images/tip.png
+images/app-icon-64.png
+images/chat-icon.png
+images/favicon.ico
+images/smiley-smile.png
+
+# Fonts
+fonts/opensans/OpenSans-CondLight.ttf
+fonts/Ubuntu-Regular.ttf
+
+# Sounds
+sounds/new-message.ogg
